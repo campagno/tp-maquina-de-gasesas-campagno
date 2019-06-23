@@ -17,6 +17,5 @@ public class SinStock implements EstadoMaquina {
     public void ingresarDInero(int cantidad, Maquina maquina) {
 
         maquina.darVuelto(cantidad);
-
     }
 }

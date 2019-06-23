@@ -21,8 +21,9 @@ public class ConDineroSuficiente implements EstadoMaquina {
         if (maquina.getStockGaseosas()==0){
             maquina.setEstadoMaquina(sinStock = new SinStock());
         }
-        maquina.setEstadoMaquina(lista = new Lista());
-
+        else {
+            maquina.setEstadoMaquina(lista = new Lista());
+        }
     }
 
     @Override
