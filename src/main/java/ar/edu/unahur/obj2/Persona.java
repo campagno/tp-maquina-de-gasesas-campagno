@@ -2,23 +2,12 @@ package ar.edu.unahur.obj2;
 
 public class Persona {
 
+    private String nombre;
     private int dinero;
 
-    public Persona(int dinero) {
+    public Persona(String nombre, int dinero) {
+        this.nombre = nombre;
         this.dinero = dinero;
-    }
-
-    public void presionarPalanca(Maquina maquina){
-        maquina.precionarPalanca();
-    }
-    public void insertarDinero(Maquina maquina,int cantDinero){
-        maquina.setDineroRecibido(cantDinero);
-        maquina.setEstado();
-        dinero -= cantDinero;
-    }
-    public void recibirVuelto(Maquina maquina){
-        dinero += (maquina.getDineroRecibido()-maquina.getPrecioGaseosa());
-        maquina.setDineroRecibido(maquina.getDineroRecibido()-maquina.getDineroSobrante());
     }
 
     public int getDinero() {
@@ -28,4 +17,12 @@ public class Persona {
     public void setDinero(int dinero) {
         this.dinero = dinero;
     }
+    public void presionarPalanca (Maquina maquina) {
+        maquina.palancaPresionada();
+    }
+    public void insertarDinero (Maquina maquina, int cantidadDinero) {
+        maquina.ingresarDInero(cantidadDinero, maquina);
+        this.setDinero(this.getDinero()-cantidadDinero);
+    }
+
 }

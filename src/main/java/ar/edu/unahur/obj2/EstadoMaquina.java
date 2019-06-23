@@ -2,7 +2,9 @@ package ar.edu.unahur.obj2;
 
 public interface EstadoMaquina {
 
-    void presionarPalanca(Maquina maquina);
+    void palancaPresionada(Maquina maquina);
+    void ingresarDInero(int cantidad,Maquina maquina);
+
 
 
 }

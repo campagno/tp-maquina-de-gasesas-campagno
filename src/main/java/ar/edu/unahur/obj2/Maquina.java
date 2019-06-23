@@ -5,73 +5,84 @@ import java.util.stream.Stream;
 
 public class Maquina {
 
-    private int dineroRecibido;
-    private int precioGaseosa = 20;
-    private int dineroFaltante;
-    private int dineroSobrante;
 
-    private int stockDeBebidas;
+    Lista lista;
 
-    private EstadoMaquina estado = new SinDinero();
+    private EstadoMaquina estadoMaquina;
+    private int stockGaseosas;
+    private int cantDinero;
+    private int precioGaseosa;
+    private int dineroIngresado;
+    private Persona persona;
 
-    public Maquina(int stockDeBebidas) {
-        this.stockDeBebidas = stockDeBebidas;
+    public Maquina(int stockGaseosas, int cantDinero, int precioGaseosa,EstadoMaquina estadoMaquina) {
+        this.setEstadoMaquina(estadoMaquina);
+        this.stockGaseosas = stockGaseosas;
+        this.cantDinero = cantDinero;
+        this.precioGaseosa = precioGaseosa;
+    }
+    public void darVuelto(int vuelto){
+        if (vuelto > 0) {
+            persona.setDinero(persona.getDinero()+vuelto);
+        }
     }
 
-    public void precionarPalanca(){
-
-        this.getEstado().presionarPalanca(this);
+    public int getDineroIngresado() {
+        return dineroIngresado;
     }
 
-    public void setDineroFaltante() {
-        this.dineroFaltante = precioGaseosa - dineroRecibido;
+    public void setDineroIngresado(int dineroIngresado) {
+        this.dineroIngresado = dineroIngresado;
     }
 
-
-    public int getDineroSobrante() {
-        return dineroSobrante;
+    public EstadoMaquina getEstadoMaquina() {
+        return estadoMaquina;
     }
 
-    public int getDineroFaltante() {
-        return dineroFaltante;
+    public void setEstadoMaquina(EstadoMaquina estadoMaquina) {
+        this.estadoMaquina = estadoMaquina;
     }
 
-
-    public void setEstado() {
-        if (dineroRecibido == 0) { estado = new SinDinero();}
-        else if (dineroRecibido < precioGaseosa) {estado = new DineroInsuficiente();}
-        else if (dineroRecibido == precioGaseosa) { estado = new DineroSuficiente();}
-        else if (dineroRecibido > precioGaseosa) {estado = new DineroSobrante();}
-        else {}
+    public int getStockGaseosas() {
+        return stockGaseosas;
     }
 
-    public EstadoMaquina getEstado() {
-        return estado;
+    public void setStockGaseosas(int stockGaseosas) {
+        this.stockGaseosas = stockGaseosas;
+        if (stockGaseosas > 0) {
+            this.setEstadoMaquina(lista = new Lista());
+        }
     }
 
-    public int getDineroRecibido() {
-        return dineroRecibido;
+    public int getCantDinero() {
+        return cantDinero;
+    }
+
+    public void setCantDinero(int cantDinero) {
+        this.cantDinero = cantDinero;
     }
 
     public int getPrecioGaseosa() {
         return precioGaseosa;
     }
 
-    public void setDineroRecibido(int dineroRecibido) {
-        this.dineroRecibido = dineroRecibido;
-
+    public void setPrecioGaseosa(int precioGaseosa) {
+        this.precioGaseosa = precioGaseosa;
     }
 
-    public int getStockDeBebidas() {
-        return stockDeBebidas;
+    public void palancaPresionada() {
+        this.getEstadoMaquina().palancaPresionada(this);
     }
 
-    public void setStockDeBebidas(int stockDeBebidas) {
-        if (stockDeBebidas == 0) {estado = new SinStokDeBebidas();}
-        this.stockDeBebidas = stockDeBebidas;
+    public void ingresarDInero(int cantidadDinero,Maquina maquina) {
+        maquina.getEstadoMaquina().ingresarDInero(cantidadDinero,this);
     }
 
+    public Persona getPersona() {
+        return persona;
+    }
 
-
-
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
 }
